@@ -4,10 +4,7 @@ spring:
 
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: profilesDatabase
-      uri: mongodb://localhost:27017/profilesDatabase
+      uri: mongodb://localhost:27017/ProfilesDB  # Chaîne de connexion directe pour MongoDB
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -29,7 +26,7 @@ spring:
       probability: 1.0
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: localhost:9092  # Chaîne de connexion directe pour Kafka
     consumer:
       group-id: profiles-group
       auto-offset-reset: earliest

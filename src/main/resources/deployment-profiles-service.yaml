@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profiles-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profiles-service
+  template:
+    metadata:
+      labels:
+        app: profiles-service
+    spec:
+      containers:
+        - name: profiles-service
+          image: koubaahm/profiles_service:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: "mongodb://mongodb:27017/profilesDatabase"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+
