@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: univ_rouen.fr.Profiles_Service.ProfilesServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.736 s -- in univ_rouen.fr.Profiles_Service.ProfilesServiceApplicationTests

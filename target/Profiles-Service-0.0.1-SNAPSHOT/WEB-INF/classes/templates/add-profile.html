@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Profile</title>
+</head>
+<body>
+<h1>Add New Profile</h1>
+<form th:action="@{/profiles/new}" th:object="${profile}" method="post">
+    <div>
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" th:field="*{birthDate}" required />
+    </div>
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" required />
+    </div>
+    <div>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" th:field="*{gender.name}" required />
+    </div>
+    <div>
+        <label for="orientation">Orientation:</label>
+        <input type="text" id="orientation" th:field="*{orientation.name}" required />
+    </div>
+    <div>
+        <button type="submit">Add</button>
+    </div>
+</form>
+</body>
+</html>

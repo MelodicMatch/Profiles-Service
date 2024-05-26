@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
+<h1>Edit Profile</h1>
+<form th:action="@{'/profiles/update/' + ${profile.userId}}" th:object="${profile}" method="post">
+    <div>
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" th:field="*{birthDate}" />
+    </div>
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" />
+    </div>
+    <div>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" th:field="*{gender.name}" />
+    </div>
+    <div>
+        <label for="orientation">Orientation:</label>
+        <input type="text" id="orientation" th:field="*{orientation.name}" />
+    </div>
+    <div>
+        <label for="profileFields">Profile Fields:</label>
+        <input type="text" id="profileFields" th:field="*{profileFields}" />
+    </div>
+    <div>
+        <label for="customProfileFields">Custom Profile Fields:</label>
+        <input type="text" id="customProfileFields" th:field="*{customProfileFields}" />
+    </div>
+    <div>
+        <label for="userStatistics">User Statistics:</label>
+        <input type="text" id="userStatistics" th:field="*{userStatistics}" />
+    </div>
+    <div>
+        <label for="userSocialMedias">User Social Medias:</label>
+        <input type="text" id="userSocialMedias" th:field="*{userSocialMedias}" />
+    </div>
+    <div>
+        <label for="userBadges">User Badges:</label>
+        <input type="text" id="userBadges" th:field="*{userBadges}" />
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+</body>
+</html>
