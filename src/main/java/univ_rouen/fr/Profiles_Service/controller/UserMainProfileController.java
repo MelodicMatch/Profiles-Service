@@ -15,27 +15,27 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/profiles")
 @AllArgsConstructor
-@Tag(name = "Profiles API", description = "API for managing user profiles")
+@Tag(name = "Profiles API", description = "API pour la gestion des profils utilisateur")
 public class UserMainProfileController {
 
     private final UserMainProfileService userMainProfileService;
     private final KafkaService kafkaService;
 
-    @Operation(summary = "Get all profiles", description = "Retrieve a list of all user profiles")
+    @Operation(summary = "Obtenir tous les profils", description = "Récupérer une liste de tous les profils utilisateur")
     @GetMapping
     public ResponseEntity<List<UserMainProfile>> getAllProfiles() {
         List<UserMainProfile> profiles = userMainProfileService.getAllProfiles();
         return ResponseEntity.ok(profiles);
     }
 
-    @Operation(summary = "Get profile by ID", description = "Retrieve a user profile by its ID")
+    @Operation(summary = "Obtenir un profil par ID", description = "Récupérer un profil utilisateur par son ID")
     @GetMapping("/{userId}")
     public ResponseEntity<UserMainProfile> getProfileById(@PathVariable String userId) {
         Optional<UserMainProfile> profile = userMainProfileService.getProfileById(userId);
         return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Create new profile", description = "Create a new user profile")
+    @Operation(summary = "Créer un nouveau profil", description = "Créer un nouveau profil utilisateur")
     @PostMapping("/new")
     public ResponseEntity<UserMainProfile> createProfile(@RequestBody UserMainProfile profile) {
         UserMainProfile createdProfile = userMainProfileService.createProfile(profile);
@@ -43,7 +43,7 @@ public class UserMainProfileController {
         return ResponseEntity.ok(createdProfile);
     }
 
-    @Operation(summary = "Update profile", description = "Update an existing user profile")
+    @Operation(summary = "Mettre à jour un profil", description = "Mettre à jour un profil utilisateur existant")
     @PutMapping("/update/{userId}")
     public ResponseEntity<UserMainProfile> updateProfile(@PathVariable String userId, @RequestBody UserMainProfile updatedProfile) {
         Optional<UserMainProfile> updated = userMainProfileService.updateProfile(userId, updatedProfile);
@@ -51,7 +51,7 @@ public class UserMainProfileController {
         return updated.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Delete profile", description = "Delete a user profile by its ID")
+    @Operation(summary = "Supprimer un profil", description = "Supprimer un profil utilisateur par son ID")
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Void> deleteProfile(@PathVariable String userId) {
         userMainProfileService.deleteProfile(userId);
@@ -59,19 +59,17 @@ public class UserMainProfileController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "View profile details", description = "View the details of a user profile")
+    @Operation(summary = "Afficher les détails du profil", description = "Afficher les détails d'un profil utilisateur")
     @GetMapping("/details/{userId}")
     public ResponseEntity<UserMainProfile> viewProfileDetails(@PathVariable String userId) {
         Optional<UserMainProfile> profile = userMainProfileService.getProfileById(userId);
         return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Send Kafka message", description = "Send a test Kafka message")
+    @Operation(summary = "Envoyer un message Kafka", description = "Envoyer un message Kafka de test")
     @GetMapping("/send-kafka-message")
     public ResponseEntity<String> sendKafkaMessage(@RequestParam String message) {
         kafkaService.sendMessage(message);
         return ResponseEntity.ok("Message sent: " + message);
     }
-
-
 }
